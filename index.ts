@@ -1,5 +1,7 @@
 import { Application, Router } from "https://deno.land/x/oak/mod.ts";
 
+import { moment } from "https://deno.land/x/deno_moment/mod.ts";
+
 const app = new Application()
 
 const urls = JSON.parse(Deno.readTextFileSync('./urls.json'))
@@ -24,7 +26,14 @@ router
     const urls = JSON.parse(Deno.readTextFileSync('./urls.json'))
     
     if(context.params && context.params.urlid && urls[context.params.urlid]){
-        context.response.redirect(urls[context.params.urlid].dest);
+        if(
+            urls[context.params.urlid].expiryDate > moment().format("YYYY-MM-DD")
+        ){
+            context.response.redirect(urls[context.params.urlid].dest);
+
+        }else{
+            context.response.body = "Link Expired"
+        }
     }else{
         context.response.body= "404";
     }
