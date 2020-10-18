@@ -10,5 +10,13 @@
     "t": {
         "dest": "https://twitter.com", 
         "expiryDate": "2020-06-08"
+    }, 
+    "c": {
+        "dest": "https://yahoo.fr", 
+        "expiryDate": "2020-09-06"
+    }, 
+    "y": {
+        "dest": "https://youtube.com", 
+        "expiryDate": "2020-09-06"
     }
 }
